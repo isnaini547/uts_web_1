@@ -1,0 +1,134 @@
+
+/* Pengaturan dasar seluruh halaman */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 25px;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* Judul halaman */
+h1, h2, h3 {
+    color: #1d4ed8;
+}
+
+/* Bagian konten */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header dan kotak konten */
+header, section, .login-box, .form-box, .table-box {
+    background-color: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px #00000010;
+}
+
+/* Formulir */
+label {
+    display: block;
+    margin-top: 12px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid #93c5fd;
+    border-color: #2563eb;
+}
+
+/* Tombol */
+button {
+    padding: 10px 16px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Tautan */
+a {
+    color: #2563eb;
+}
+
+header a {
+    color: white;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background-color: white;
+}
+
+th, td {
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #dbeafe;
+}
+
+/* Navigasi dashboard */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.menu a {
+    display: block;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background-color: #dbeafe;
+}
+
+/* Tampilan layar kecil */
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    header, section {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 7px;
+    }
+}

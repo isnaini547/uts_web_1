@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Buku - TokoBuku</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 25px;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-box, .table-box {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #dbeafe;
+        }
+
+        a {
+            color: white;
+        }
+
+        img {
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Informasi Stok/Katalog Buku</h1>
+    <a href="dashboard.html">Kembali ke Dashboard</a>
+</header>
+
+<section class="form-box">
+    <h2>Tambah Stok Buku</h2>
+
+    
+<form id="formBuku">
+    <input type="text" id="foto" placeholder="Foto (nama file gambar)">
+    <input type="text" id="kodeBarang" placeholder="Kode Barang" required>
+    <input type="text" id="namaBarang" placeholder="Nama Barang" required>
+    <input type="text" id="jenisBarang" placeholder="Jenis Barang" required>
+    <input type="text" id="edisi" placeholder="Edisi" required>
+    <input type="number" id="stok" placeholder="Stok" min="0" required>
+    <input type="number" id="harga" placeholder="Harga" min="1" required>
+    <button type="submit">Tambah Buku</button>
+</form>
+
+</section>
+
+<section class="table-box">
+    <h2>Daftar Katalog Buku</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Foto</th>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Jenis Barang</th>
+                <th>Edisi</th>
+                <th>Stok</th>
+                <th>Harga</th>
+            </tr>
+        </thead>
+
+        <tbody id="daftarBuku"></tbody>
+    </table>
+</section>
+
+<script>
+const dataKatalogBuku = [
+  {
+    kodeBarang: "ASIP4301",
+    namaBarang: "Pengantar Ilmu Komunikasi",
+    jenisBarang: "Buku Ajar",
+    edisi: "2",
+    stok: 548,
+    harga: "Rp 180.000",
+    cover: "img/pengantar_komunikasi.jpg"
+},
+    {
+        kodeBarang: "EKMA4002",
+        namaBarang: "Manajemen Keuangan",
+        jenisBarang: "Buku Ajar",
+        edisi: "3",
+        stok: 392,
+        harga: "Rp 220.000",
+        cover: "img/manajemen_keuangan.jpg"
+        
+    },
+    {
+        kodeBarang: "EKMA4310",
+        namaBarang: "Kepemimpinan",
+        jenisBarang: "Buku Ajar",
+        edisi: "1",
+        stok: 278,
+        harga: "Rp 150.000",
+        cover: "img/kepemimpinan.jpg"
+    },
+    {
+        kodeBarang: "BIOL4211",
+        namaBarang: "Mikrobiologi Dasar",
+        jenisBarang: "Buku Ajar",
+        edisi: "2",
+        stok: 165,
+        harga: "Rp 200.000",
+        cover: "img/mikrobiologi.jpg"
+    },
+    {
+        kodeBarang: "PAUD4401",
+        namaBarang: "Perkembangan Anak Usia Dini",
+        jenisBarang: "Buku Ajar",
+        edisi: "4",
+        stok: 204,
+        harga: "Rp 250.000",
+        cover: "img/paud_perkembangan.jpg"
+    }
+];
+
+const daftarBuku = document.getElementById("daftarBuku");
+
+function tampilkanBuku() {
+    daftarBuku.innerHTML = "";
+
+    dataKatalogBuku.forEach(function(buku, index) {
+        daftarBuku.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>-</td>
+                <td>${buku.kodeBarang}</td>
+                <td>${buku.namaBarang}</td>
+                <td>${buku.jenisBarang}</td>
+                <td>${buku.edisi}</td>
+                <td>${buku.stok}</td>
+                <td>${buku.harga}</td>
+            </tr>
+        `;
+    });
+}
+
+tampilkanBuku();
+
+document.getElementById("formBuku").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const judul = document.getElementById("judul").value.trim();
+    const penulis = document.getElementById("penulis").value.trim();
+    const harga = Number(document.getElementById("harga").value);
+    const stok = Number(document.getElementById("stok").value);
+
+    if (!judul || !penulis || harga <= 0 || stok < 0) {
+        alert("Mohon isi data buku dengan benar.");
+        return;
+    }
+
+    dataKatalogBuku.push({
+        kodeBarang: "BR" + (dataKatalogBuku.length + 1),
+        namaBarang: judul,
+        jenisBarang: "Buku Ajar",
+        edisi: "-",
+        stok: stok,
+        harga: "Rp " + harga.toLocaleString("id-ID")
+    });
+
+    tampilkanBuku();
+    this.reset();
+
+    alert("Buku berhasil ditambahkan!");
+});
+</script>
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
+

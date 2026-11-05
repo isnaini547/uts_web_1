@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TokoBuku</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .login-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 4px 15px #00000020;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2563eb;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .login-button {
+            width: 100%;
+            margin-top: 20px;
+            background: #2563eb;
+            color: white;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .links button {
+            background: none;
+            color: #2563eb;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 10px;
+            padding: 25px;
+            width: 320px;
+            box-shadow: 0 4px 20px #00000030;
+        }
+
+        dialog::backdrop {
+            background: #00000070;
+        }
+
+        dialog button {
+            margin-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="login-box">
+        <h1>TokoBuku</h1>
+        <p style="text-align:center;">Silakan login ke akun Anda</p>
+
+        <form id="formLogin">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <div class="links">
+            <button type="button" onclick="bukaModal('lupaModal')">
+                Lupa Password
+            </button>
+
+            <button type="button" onclick="bukaModal('daftarModal')">
+                Daftar
+            </button>
+        </div>
+    </main>
+
+    <!-- DIALOG LUPA PASSWORD -->
+    <dialog id="lupaModal">
+        <h2>Lupa Password</h2>
+        <p>Masukkan email dan password baru Anda.</p>
+
+        <label for="emailPemulihan">Email</label>
+        <input type="email" id="emailPemulihan" placeholder="Email Anda">
+
+        <label for="passwordBaruPemulihan">Password Baru</label>
+        <input type="password" id="passwordBaruPemulihan" placeholder="Password baru">
+
+        <button type="button" onclick="resetPassword()">Ubah Password</button>
+        <button type="button" onclick="tutupModal('lupaModal')">Tutup</button>
+    </dialog>
+
+    <!-- DIALOG DAFTAR -->
+    <dialog id="daftarModal">
+        <h2>Daftar Akun</h2>
+        <p>Silakan isi data untuk membuat akun baru.</p>
+
+        <label for="namaBaru">Nama</label>
+        <input type="text" id="namaBaru" placeholder="Nama lengkap">
+
+        <label for="emailBaru">Email</label>
+        <input type="email" id="emailBaru" placeholder="Email">
+
+        <label for="passwordBaru">Password</label>
+        <input type="password" id="passwordBaru" placeholder="Buat password">
+
+        <button type="button" onclick="daftarAkun()">Daftar</button>
+        <button type="button" onclick="tutupModal('daftarModal')">Tutup</button>
+    </dialog>
+
+    <script>
+        // MEMBUKA DAN MENUTUP MODAL
+        function bukaModal(id) {
+            document.getElementById(id).showModal();
+        }
+
+        function tutupModal(id) {
+            document.getElementById(id).close();
+        }
+
+        // FUNGSI DAFTAR AKUN
+        function daftarAkun() {
+            const nama = document.getElementById("namaBaru").value.trim();
+            const email = document.getElementById("emailBaru").value.trim().toLowerCase();
+            const password = document.getElementById("passwordBaru").value;
+
+            if (!nama || !email || !password) {
+                alert("Mohon lengkapi nama, email, dan password.");
+                return;
+            }
+
+            const akun = JSON.parse(
+                localStorage.getItem("akunTokoBuku") || "[]"
+            );
+
+            if (
+                email === "admin@tokobuku.com" ||
+                akun.some(item => item.email === email)
+            ) {
+                alert("Email sudah terdaftar.");
+                return;
+            }
+
+            akun.push({ nama, email, password });
+
+            localStorage.setItem(
+                "akunTokoBuku",
+                JSON.stringify(akun)
+            );
+
+            alert("Pendaftaran berhasil! Silakan login.");
+
+            document.getElementById("namaBaru").value = "";
+            document.getElementById("emailBaru").value = "";
+            document.getElementById("passwordBaru").value = "";
+
+            tutupModal("daftarModal");
+        }
+
+        // FUNGSI LUPA PASSWORD
+        function resetPassword() {
+            const email = document.getElementById("emailPemulihan").value.trim().toLowerCase();
+            const passwordBaru = document.getElementById("passwordBaruPemulihan").value;
+
+            if (!email || !passwordBaru) {
+                alert("Masukkan email dan password baru.");
+                return;
+            }
+
+            const akun = JSON.parse(
+                localStorage.getItem("akunTokoBuku") || "[]"
+            );
+
+            const indeks = akun.findIndex(
+                item => item.email === email
+            );
+
+            if (indeks === -1) {
+                alert("Email tidak ditemukan.");
+                return;
+            }
+
+            akun[indeks].password = passwordBaru;
+
+            localStorage.setItem(
+                "akunTokoBuku",
+                JSON.stringify(akun)
+            );
+
+            alert("Password berhasil diubah! Silakan login dengan password baru.");
+
+            document.getElementById("emailPemulihan").value = "";
+            document.getElementById("passwordBaruPemulihan").value = "";
+
+            tutupModal("lupaModal");
+        }
+
+        // FUNGSI LOGIN
+        document.getElementById("formLogin").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const password = document.getElementById("password").value;
+
+            if (
+                email === "admin@tokobuku.com" &&
+                password === "admin123"
+            ) {
+                alert("Login berhasil!");
+                window.location.href = "dashboard.html";
+                return;
+            }
+
+            const akun = JSON.parse(
+                localStorage.getItem("akunTokoBuku") || "[]"
+            );
+
+            const ditemukan = akun.find(
+                item => item.email === email && item.password === password
+            );
+
+            if (ditemukan) {
+                alert("Login berhasil! Selamat datang, " + ditemukan.nama + ".");
+                window.location.href = "dashboard.html";
+            } else {
+                alert("email/password yang anda masukkan salah");
+            }
+        });
+    </script>
+
+</body>
+</html>

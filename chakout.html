@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Buku - TokoBuku</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 25px;
+        }
+
+        main {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        header, section {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #2563eb;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .edit-button {
+            background: #ea580c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #dbeafe;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Pemesanan Buku</h1>
+            <p>Silakan lengkapi informasi pemesanan buku.</p>
+            <a href="dashboard.html">Kembali ke Dashboard</a>
+        </header>
+
+        <section>
+            <h2>Data Pemesan</h2>
+
+            <form id="formPesanan">
+                <label for="nama">Nama Pemesan</label>
+                <input type="text" id="nama" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+
+                <label for="alamat">Alamat Pengiriman</label>
+                <input type="text" id="alamat" required>
+
+                <label for="judulBuku">Judul Buku</label>
+                <input type="text" id="judulBuku" required>
+
+                <label for="jumlah">Jumlah Buku</label>
+                <input type="number" id="jumlah" min="1" value="1" required>
+
+                <label for="harga">Harga per Buku (Rp)</label>
+                <input type="number" id="harga" min="1" value="85000" required>
+
+                <label for="pembayaran">Metode Pembayaran</label>
+                <select id="pembayaran" required>
+                    <option value="">Pilih pembayaran</option>
+                    <option value="Transfer Bank">Transfer Bank</option>
+                    <option value="E-Wallet">E-Wallet</option>
+                    <option value="COD">COD</option>
+                </select>
+
+                <button type="submit" id="tombolSimpan">
+                    Tambah Pesanan
+                </button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Daftar Pesanan</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Buku</th>
+                        <th>Jumlah</th>
+                        <th>Total</th>
+                        <th>Pembayaran</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="daftarPesanan"></tbody>
+            </table>
+
+            <p class="total">
+                Total Seluruh Pesanan: Rp <span id="totalSemua">0</span>
+            </p>
+        </section>
+    </main>
+
+    <script>
+        let dataPesanan = [];
+        let indeksEdit = -1;
+
+        const form = document.getElementById("formPesanan");
+
+        function formatRupiah(angka) {
+            return angka.toLocaleString("id-ID");
+        }
+
+        function tampilkanPesanan() {
+            const tabel = document.getElementById("daftarPesanan");
+            tabel.innerHTML = "";
+            let totalSemua = 0;
+
+            dataPesanan.forEach(function(pesanan, index) {
+                const total = pesanan.jumlah * pesanan.harga;
+                totalSemua += total;
+
+                const baris = document.createElement("tr");
+
+                const kolom = [
+                    pesanan.nama,
+                    pesanan.judulBuku,
+                    pesanan.jumlah,
+                    "Rp " + formatRupiah(total),
+                    pesanan.pembayaran
+                ];
+
+                kolom.forEach(function(nilai) {
+                    const td = document.createElement("td");
+                    td.textContent = nilai;
+                    baris.appendChild(td);
+                });
+
+                const aksi = document.createElement("td");
+
+                const tombolEdit = document.createElement("button");
+                tombolEdit.textContent = "Ubah";
+                tombolEdit.className = "edit-button";
+                tombolEdit.type = "button";
+                tombolEdit.onclick = function() {
+                    editPesanan(index);
+                };
+
+                aksi.appendChild(tombolEdit);
+                baris.appendChild(aksi);
+                tabel.appendChild(baris);
+            });
+
+            document.getElementById("totalSemua").textContent =
+                formatRupiah(totalSemua);
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+           const pesanan = {
+    nama: document.getElementById("nama").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    alamat: document.getElementById("alamat").value.trim(),
+    judulBuku: document.getElementById("judulBuku").value.trim(),
+    jumlah: Number(document.getElementById("jumlah").value),
+    harga: Number(document.getElementById("harga").value),
+    pembayaran: document.getElementById("pembayaran").value,
+
+    nomorDO: "DO" + Date.now(),
+    status: "Dalam proses",
+    ekspedisi: "JNE",
+    tanggal: new Date().toLocaleDateString("id-ID"),
+    paket: "Reguler"
+};
+
+            if (
+                !pesanan.nama ||
+                !pesanan.email ||
+                !pesanan.alamat ||
+                !pesanan.judulBuku ||
+                pesanan.jumlah < 1 ||
+                pesanan.harga < 1 ||
+                !pesanan.pembayaran
+            ) {
+                alert("Mohon lengkapi data pemesanan dengan benar.");
+                return;
+            }
+
+            if (indeksEdit === -1) {
+    dataPesanan.push(pesanan);
+    alert("Pesanan berhasil ditambahkan!\nNomor DO: " + pesanan.nomorDO);
+} else {
+    dataPesanan[indeksEdit] = pesanan;
+    alert("Pesanan berhasil diubah!");
+    indeksEdit = -1;
+    document.getElementById("tombolSimpan").textContent =
+        "Tambah Pesanan";
+}
+
+localStorage.setItem("dataPesanan", JSON.stringify(dataPesanan));
+
+localStorage.setItem(
+    "dataPengiriman",
+    JSON.stringify(dataPesanan.map(item => ({
+        nomor: item.nomorDO,
+        pemesan: item.nama,
+        status: item.status,
+        ekspedisi: item.ekspedisi,
+        tanggal: item.tanggal,
+        paket: item.paket,
+        total: item.jumlah * item.harga,
+        progress: 50
+    })))
+);
+              
+
+            tampilkanPesanan();
+            form.reset();
+            document.getElementById("jumlah").value = 1;
+            document.getElementById("harga").value = 85000;
+        });
+
+        function editPesanan(index) {
+            const pesanan = dataPesanan[index];
+
+            document.getElementById("nama").value = pesanan.nama;
+            document.getElementById("email").value = pesanan.email;
+            document.getElementById("alamat").value = pesanan.alamat;
+            document.getElementById("judulBuku").value = pesanan.judulBuku;
+            document.getElementById("jumlah").value = pesanan.jumlah;
+            document.getElementById("harga").value = pesanan.harga;
+            document.getElementById("pembayaran").value = pesanan.pembayaran;
+
+            indeksEdit = index;
+            document.getElementById("tombolSimpan").textContent =
+                "Simpan Perubahan";
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>

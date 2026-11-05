@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Transaksi - TokoBuku</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+        }
+
+        .status {
+            color: #15803d;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>History Transaksi</h1>
+        <p>Riwayat transaksi dari pesanan yang telah dimasukkan.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Nomor DO</th>
+                    <th>Nama Pembeli</th>
+                    <th>Judul Buku</th>
+                    <th>Jumlah</th>
+                    <th>Total Pembayaran</th>
+                    <th>Metode Pembayaran</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="daftarHistory"></tbody>
+        </table>
+
+        <p><a href="dashboard.html">Kembali ke Dashboard</a></p>
+    </main>
+
+    <script>
+        const dataPesanan = JSON.parse(
+            localStorage.getItem("dataPesanan") || "[]"
+        );
+
+        const daftar = document.getElementById("daftarHistory");
+
+        if (dataPesanan.length === 0) {
+            daftar.innerHTML = `
+                <tr>
+                    <td colspan="8">Belum ada riwayat transaksi.</td>
+                </tr>
+            `;
+        } else {
+            dataPesanan.forEach((pesanan, index) => {
+                const baris = document.createElement("tr");
+                const total = pesanan.jumlah * pesanan.harga;
+
+                const dataKolom = [
+                    index + 1,
+                    pesanan.nomorDO || "-",
+                    pesanan.nama,
+                    pesanan.judulBuku,
+                    pesanan.jumlah,
+                    "Rp " + total.toLocaleString("id-ID"),
+                    pesanan.pembayaran,
+                    pesanan.status || "Pesanan diproses"
+                ];
+
+                dataKolom.forEach((nilai, posisi) => {
+                    const kolom = document.createElement("td");
+                    kolom.textContent = nilai;
+
+                    if (posisi === 7) {
+                        kolom.className = "status";
+                    }
+
+                    baris.appendChild(kolom);
+                });
+
+                daftar.appendChild(baris);
+            });
+        }
+    </script>
+</body>
+</html>

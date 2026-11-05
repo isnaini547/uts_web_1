@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Pengiriman - TokoBuku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        main {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            color: #2563eb;
+        }
+
+        input, button {
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            width: 60%;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #hasil {
+            margin-top: 25px;
+            line-height: 1.8;
+        }
+
+        .progress {
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar {
+            width: 75%;
+            background: #22c55e;
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Tracking Pengiriman Buku</h1>
+        <p>Masukkan nomor Delivery Order untuk memeriksa pesanan.</p>
+
+        <form id="formTracking">
+            <label for="nomorDO">Nomor Delivery Order:</label><br>
+            <input type="text" id="nomorDO"
+                   placeholder="Contoh: DO001" required>
+            <button type="submit">Cari</button>
+        </form>
+
+        <section id="hasil"></section>
+
+        <p><a href="dashboard.html">Kembali ke Dashboard</a></p>
+    </main>
+
+    <script>
+       const dataPengiriman = JSON.parse(
+    localStorage.getItem("dataPengiriman") || "[]"
+);
+        document.getElementById("formTracking")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const nomor = document.getElementById("nomorDO")
+                    .value.trim().toUpperCase();
+
+                const pesanan = dataPengiriman.find(
+                    item => item.nomor === nomor
+                );
+
+                const hasil = document.getElementById("hasil");
+
+                if (!pesanan) {
+                    hasil.innerHTML =
+                        "<p>Nomor Delivery Order tidak ditemukan.</p>";
+                    return;
+                }
+
+                hasil.innerHTML = `
+                    <h2>Detail Pengiriman</h2>
+                    <p><b>Nomor DO:</b> ${pesanan.nomor}</p>
+                    <p><b>Nama Pemesan:</b> ${pesanan.pemesan}</p>
+                    <p><b>Status:</b> ${pesanan.status}</p>
+                    <div class="progress">
+                        <div class="bar">${pesanan.progress}%</div>
+                    </div>
+                    <p><b>Ekspedisi:</b> ${pesanan.ekspedisi}</p>
+                    <p><b>Tanggal Kirim:</b> ${pesanan.tanggal}</p>
+                    <p><b>Jenis Paket:</b> ${pesanan.paket}</p>
+                    <p><b>Total Pembayaran:</b> Rp ${
+                        pesanan.total.toLocaleString("id-ID")
+                    }</p>
+                `;
+            });
+    </script>
+</body>
+</html>
