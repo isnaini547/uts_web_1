@@ -55,6 +55,7 @@ dan daftar akun
 
 ### 2. Dashboard
 Menampilkan halaman utama dan navigasi menuju fitur-fitur aplikasi.
+![dashboard](ss/4foto.png)
 
 ### 3. Stok/Katalog Buku
 Menampilkan daftar buku dalam bentuk tabel yang berisi:
@@ -65,6 +66,9 @@ Menampilkan daftar buku dalam bentuk tabel yang berisi:
 - Edisi
 - Stok
 - Harga
+  ![stok](ss/5foto.png)
+  ![stok](ss/6foto.png)
+  ![stok](ss/7foto.png)
 
 ### 4. Tambah Buku
 Digunakan untuk menambahkan data buku baru melalui form yang tersedia.
