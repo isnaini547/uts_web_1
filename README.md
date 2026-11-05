@@ -2,7 +2,7 @@
 # 📚 APLIKASI TOKOBUKU
 ### Ujian Tengah Semester – Praktikum Pemrograman Web 1
 
-## 👤 Identitas
+##  Identitas
 - **Nama:** Isnaini
 - **NIM:** 312510380
 - **Mata Kuliah:** Pemrograman Web 1
@@ -10,7 +10,7 @@
 
 ---
 
-## 📖 Deskripsi Project
+##  Deskripsi Project
 
 TokoBuku merupakan aplikasi berbasis web sederhana yang dibuat untuk memenuhi tugas Ujian Tengah Semester (UTS) Praktikum Pemrograman Web 1.
 
@@ -20,7 +20,7 @@ Project ini menggunakan data simulasi yang disimpan dalam JavaScript dan belum m
 
 ---
 
-## 🎯 Tujuan Project
+## Tujuan Project
 
 1. Menerapkan penggunaan HTML dalam pembuatan halaman website.
 2. Menggunakan CSS untuk mengatur tampilan website.
@@ -30,7 +30,7 @@ Project ini menggunakan data simulasi yang disimpan dalam JavaScript dan belum m
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Teknologi yang Digunakan
 
 | Teknologi | Kegunaan |
 |---|---|
@@ -42,7 +42,7 @@ Project ini menggunakan data simulasi yang disimpan dalam JavaScript dan belum m
 
 ---
 
-## ✨ Fitur Aplikasi
+##  Fitur Aplikasi
 
 ### 1. Login
 Digunakan untuk melakukan simulasi masuk ke dalam aplikasi menggunakan email dan password.
@@ -89,14 +89,16 @@ lalu pesanan berhasil dan mendapat no DO (no pesanan)
 
 ### 6. Tracking
 Digunakan untuk melihat informasi dan status pengiriman pesanan.
-![tracking](ss/13foto.png)
+![tracking](ss/14foto.png)
 
 ### 7. Laporan dan History
 Merupakan halaman pendukung untuk melengkapi fitur aplikasi.
+![laporan](ss/13foto.png)
+![history](ss/14foto.png)
 
 ---
 
-## 📂 Struktur Folder Project
+##  Struktur Folder Project
 
 ```text
 tugas_uts_web1/
@@ -124,7 +126,7 @@ tugas_uts_web1/
 
 ---
 
-## ⚙️ Cara Menjalankan Aplikasi
+##  Cara Menjalankan Aplikasi
 
 1. Download atau clone repository ini.
 2. Ekstrak folder project jika masih berbentuk ZIP.
@@ -135,7 +137,7 @@ tugas_uts_web1/
 
 ---
 
-## 🧪 Pengujian Aplikasi
+##  Pengujian Aplikasi
 
 Pengujian dilakukan dengan mencoba fitur-fitur yang tersedia, yaitu:
 
@@ -152,7 +154,7 @@ Hasil pengujian disesuaikan dengan fungsi aplikasi yang telah dijalankan.
 
 ---
 
-## 📌 Kesimpulan
+##  Kesimpulan
 
 Pembuatan aplikasi TokoBuku menjadi salah satu penerapan materi Praktikum Pemrograman Web 1. Melalui project ini, penggunaan HTML, CSS, dan JavaScript dapat diterapkan untuk membuat website sederhana yang memiliki beberapa halaman dan fitur interaktif.
 
@@ -160,8 +162,8 @@ Project ini diharapkan dapat meningkatkan pemahaman mengenai pembuatan website, 
 
 ---
 
-## 👩‍💻 Penutup
+##  Penutup
 
 **Project UTS Praktikum Pemrograman Web 1**
 
-Dibuat oleh **Isnaini** – 2026.
+Dibuat oleh **Isnaini** 
