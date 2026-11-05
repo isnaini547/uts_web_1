@@ -77,6 +77,9 @@ Digunakan untuk menambahkan data buku baru melalui form yang tersedia.
 
 ### 5. Checkout
 Digunakan untuk melakukan simulasi proses pemesanan buku.
+![chakout](ss/8foto.png)
+![chakout](ss/9foto.png)
+![chakout](ss/10foto.png)
 
 ### 6. Tracking
 Digunakan untuk melihat informasi dan status pengiriman pesanan.
