@@ -81,6 +81,12 @@ Digunakan untuk melakukan simulasi proses pemesanan buku.
 ![chakout](ss/9foto.png)
 ![chakout](ss/10foto.png)
 
+dan juga ada fitur untuk tambah pesanan
+![chakout](ss/11foto.png)
+
+lalu pesanan berhasil dan mendapat no DO (no pesanan)
+![chakout](ss/12foto.png)
+
 ### 6. Tracking
 Digunakan untuk melihat informasi dan status pengiriman pesanan.
 
