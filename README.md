@@ -47,8 +47,9 @@ Project ini menggunakan data simulasi yang disimpan dalam JavaScript dan belum m
 ### 1. Login
 Digunakan untuk melakukan simulasi masuk ke dalam aplikasi menggunakan email dan password.
 ![login](ss/1foto.png)
-di fitur login ini juga menampilkan seperti lupa password dan daftar akun
+di fitur login ini juga menampilkan seperti lupa password 
 ![login](ss/2foto.png)
+dan daftar akun
 ![login](ss/foto.png)
 
 ### 2. Dashboard
