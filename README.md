@@ -94,7 +94,7 @@ Digunakan untuk melihat informasi dan status pengiriman pesanan.
 ### 7. Laporan dan History
 Merupakan halaman pendukung untuk melengkapi fitur aplikasi.
 ![laporan](ss/13foto.png)
-![history](ss/14foto.png)
+![history](ss/15foto.png)
 
 ---
 
