@@ -49,8 +49,9 @@ Digunakan untuk melakukan simulasi masuk ke dalam aplikasi menggunakan email dan
 ![login](ss/1foto.png)
 di fitur login ini juga menampilkan seperti lupa password 
 ![login](ss/2foto.png)
+
 dan daftar akun
-![login](ss/foto.png)
+![login](ss/3foto.png)
 
 ### 2. Dashboard
 Menampilkan halaman utama dan navigasi menuju fitur-fitur aplikasi.
