@@ -67,12 +67,13 @@ Menampilkan daftar buku dalam bentuk tabel yang berisi:
 - Edisi
 - Stok
 - Harga
-  ![stok](ss/6foto.png)
+  
   ![stok](ss/7foto.png)
-  ![stok](ss/8foto.png)
+  
 
 ### 4. Tambah Buku
 Digunakan untuk menambahkan data buku baru melalui form yang tersedia.
+![tambah](ss/6foto.png)
 
 ### 5. Checkout
 Digunakan untuk melakukan simulasi proses pemesanan buku.
