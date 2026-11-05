@@ -158,9 +158,13 @@ Hasil pengujian disesuaikan dengan fungsi aplikasi yang telah dijalankan.
 
 ##  Kesimpulan
 
-Pembuatan aplikasi TokoBuku menjadi salah satu penerapan materi Praktikum Pemrograman Web 1. Melalui project ini, penggunaan HTML, CSS, dan JavaScript dapat diterapkan untuk membuat website sederhana yang memiliki beberapa halaman dan fitur interaktif.
+Berdasarkan proses pembuatan dan pengujian aplikasi TokoBuku, dapat disimpulkan bahwa aplikasi ini merupakan implementasi dasar pengembangan website menggunakan HTML, CSS, dan JavaScript. HTML digunakan untuk membangun struktur halaman, CSS untuk mengatur tampilan, sedangkan JavaScript digunakan untuk mengolah data dan memberikan interaksi pada aplikasi.
 
-Project ini diharapkan dapat meningkatkan pemahaman mengenai pembuatan website, pengolahan data menggunakan JavaScript, serta penggunaan DOM dan Event Handling.
+Aplikasi TokoBuku memiliki beberapa halaman dan fitur, yaitu login pengguna, dashboard, katalog dan pengelolaan stok buku, penambahan data buku, checkout, tracking pengiriman, laporan, serta history. Data pengguna, katalog buku, dan tracking menggunakan data simulasi yang disimpan dalam JavaScript, sehingga aplikasi belum menggunakan database maupun sistem transaksi secara langsung.
+
+Melalui project ini, penulis dapat memahami penerapan DOM (Document Object Model), event handling, penggunaan form, serta proses menampilkan dan mengubah data secara dinamis pada halaman website.
+
+Dengan demikian, project UTS ini menjadi penerapan materi Praktikum Pemrograman Web 1 dalam membangun aplikasi web sederhana yang memiliki beberapa halaman dan fungsi yang saling mendukung.
 
 ---
 
