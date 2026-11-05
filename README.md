@@ -52,10 +52,11 @@ di fitur login ini juga menampilkan seperti lupa password
 
 dan daftar akun
 ![login](ss/3foto.png)
+![login](ss/4foto.png)
 
 ### 2. Dashboard
 Menampilkan halaman utama dan navigasi menuju fitur-fitur aplikasi.
-![dashboard](ss/4foto.png)
+![dashboard](ss/5foto.png)
 
 ### 3. Stok/Katalog Buku
 Menampilkan daftar buku dalam bentuk tabel yang berisi:
@@ -66,9 +67,9 @@ Menampilkan daftar buku dalam bentuk tabel yang berisi:
 - Edisi
 - Stok
 - Harga
-  ![stok](ss/5foto.png)
   ![stok](ss/6foto.png)
   ![stok](ss/7foto.png)
+  ![stok](ss/8foto.png)
 
 ### 4. Tambah Buku
 Digunakan untuk menambahkan data buku baru melalui form yang tersedia.
