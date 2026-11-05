@@ -52,6 +52,8 @@ di fitur login ini juga menampilkan seperti lupa password
 
 dan daftar akun
 ![login](ss/3foto.png)
+
+tanda login berhasil, dan jika login berhasil akan langsung menuju ke halaman dashboard
 ![login](ss/4foto.png)
 
 ### 2. Dashboard
